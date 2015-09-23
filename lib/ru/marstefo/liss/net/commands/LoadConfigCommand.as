@@ -25,15 +25,8 @@ package ru.marstefo.liss.net.commands
 		
 		override protected function onComplete(result:*):void 
 		{
-			try
-			{
-				var data:XML = new XML(result);
-				configModel.parse(data);
-			}
-			catch (e:Error)
-			{
-				//trace error
-			}
+			var data:XML = new XML(result);
+			configModel.parse(data);
 		}	
 	}
 }
