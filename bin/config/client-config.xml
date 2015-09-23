@@ -1,0 +1,10 @@
+<!--
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	MarsTefo Client Configuration file
+	(c) 2015 MarsTefo
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
+<MarsClientConfig>
+	<login>user</login>
+	<room>The Lobby</room>
+</MarsClientConfig>
