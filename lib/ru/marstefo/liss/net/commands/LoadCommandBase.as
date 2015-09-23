@@ -59,9 +59,7 @@ package ru.marstefo.liss.net.commands
 				}
 				catch (e:Error)
 				{
-					//ErrorReportService.reportError(e);
-					trace(e.toString());
-					dispatchComplete(false);
+					_reportError(e)
 				}
 			}
 			
@@ -71,6 +69,11 @@ package ru.marstefo.liss.net.commands
 		private function _onError(e:Event):void
 		{
 			removeListeners(e.currentTarget as IEventDispatcher);
+			_reportError(e);
+		}
+		
+		private function _reportError(e:*):void
+		{
 			//ErrorReportService.reportError(e);
 			trace(e.toString());
 			dispatchComplete(false);
