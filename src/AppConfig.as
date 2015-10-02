@@ -1,6 +1,7 @@
 package  
 {
-	import ru.marstefo.liss.net.commands.LoadConfigCommand;
+	import com.smartfoxserver.v2.SmartFox;
+	import mvc.commands.StartupCommand;
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.extensions.directCommandMap.api.IDirectCommandMap;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
@@ -39,12 +40,13 @@ package
 		{
 			//MODELS
 			injector.map(ConfigModel).asSingleton();
+			injector.map(SmartFox).asSingleton();
 			//MEDIATORS
 			
 			//Events
 			
 			//Commands
-			directCommandMap.map(LoadConfigCommand).execute();
+			directCommandMap.map(StartupCommand).execute();
 		}
 		
 	}
