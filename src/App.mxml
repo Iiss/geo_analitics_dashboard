@@ -2,13 +2,15 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:s="library://ns.adobe.com/flex/spark"
                xmlns:mx="library://ns.adobe.com/flex/mx"
-			   initialize="init()">
+			   xmlns:views="mvc.views.*"
+			   addedToStage="init()">
 			   
 	<fx:Script>
 		<![CDATA[
 		import robotlegs.bender.framework.impl.Context;
 		import robotlegs.bender.extensions.contextView.ContextView;
 		import bundles.MVCSBundleNoTraceLog;
+		import robotlegs.bender.extensions.signalCommandMap.SignalCommandMapExtension;
 		import robotlegs.bender.framework.api.IContext;
 		
 		protected var context:IContext;
@@ -16,7 +18,7 @@
 		{
 			//setup context
 			context = Context(new Context()
-			.install(MVCSBundleNoTraceLog)
+			.install(MVCSBundleNoTraceLog,SignalCommandMapExtension)
 			.configure(new AppConfig())
 			.configure(new ContextView(this)));
 		}
@@ -25,7 +27,5 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<s:TextArea id="console" width="100%" height="100%">
-		
-	</s:TextArea>
+	<views:ConsoleView width="100%" height="100%"/>
 </s:Application>

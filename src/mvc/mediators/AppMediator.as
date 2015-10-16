@@ -17,13 +17,8 @@ package mvc.mediators
 		override public function initialize():void 
 		{
 			super.initialize();
-			addContextListener(Event.CHANGE, onChange);
 		}
 		
-		private function onChange(e:Event):void
-		{
-			trace('change event!');
-		}
 	}
 
 }

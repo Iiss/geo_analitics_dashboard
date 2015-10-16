@@ -5,11 +5,12 @@ package ru.marstefo.liss.net.commands
 	import com.smartfoxserver.v2.SmartFox;
 	import eu.alebianco.robotlegs.utils.impl.AsyncCommand;
 	import ru.marstefo.liss.net.models.ConfigModel;
+	import ru.marstefo.liss.net.commands.SFSAbstractAsyncCommand
 	/**
 	 * ...
 	 * @author liss
 	 */
-	public class SFSJoinRoomCommand extends AsyncCommand
+	public class SFSJoinRoomCommand extends SFSAbstractAsyncCommand
 	{
 		[Inject]
 		public var sfs:SmartFox;
@@ -48,18 +49,6 @@ package ru.marstefo.liss.net.commands
 			sfs.removeEventListener(SFSEvent.ROOM_JOIN_ERROR, _onJoinRoomError);
 		}
 		
-		// TODO: refactor this
-		private function _reportError(e:*):void
-		{
-			//ErrorReportService.reportError(e);
-			trace(e.toString());
-			dispatchComplete(false);
-		}
 		
-		private function _dTrace(msg:*):void
-		{
-			if (!msg) return;
-			trace(msg.toString());
-		}
 	}
 }

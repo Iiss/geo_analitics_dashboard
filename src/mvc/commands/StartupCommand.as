@@ -5,6 +5,7 @@ package mvc.commands
 	import ru.marstefo.liss.net.commands.SFSConnectCommand;
 	import ru.marstefo.liss.net.commands.SFSLoginCommand;
 	import ru.marstefo.liss.net.commands.SFSJoinRoomCommand;
+	import mvc.commands.SetupSessionCommand;
 	/**
 	 * ...
 	 * @author liss

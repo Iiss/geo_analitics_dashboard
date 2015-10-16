@@ -5,11 +5,12 @@ package ru.marstefo.liss.net.commands
 	import eu.alebianco.robotlegs.utils.impl.AsyncCommand;
 	import com.smartfoxserver.v2.core.SFSEvent;
 	import ru.marstefo.liss.net.models.ConfigModel;
+	import ru.marstefo.liss.net.commands.SFSAbstractAsyncCommand;
 	/**
 	 * ...
 	 * @author liss
 	 */
-	public class SFSLoginCommand  extends AsyncCommand
+	public class SFSLoginCommand  extends SFSAbstractAsyncCommand
 	{
 		private static const SFS_CONFIG_PATH:String = "config/sfs-config.xml";
 		
@@ -50,20 +51,6 @@ package ru.marstefo.liss.net.commands
 		{
 			sfs.removeEventListener(SFSEvent.LOGIN, _onLogin);
             sfs.removeEventListener(SFSEvent.LOGIN_ERROR, _onLoginError);
-		}
-		
-		// TODO: refactor this
-		private function _reportError(e:*):void
-		{
-			//ErrorReportService.reportError(e);
-			trace(e.toString());
-			dispatchComplete(false);
-		}
-		
-		private function _dTrace(msg:*):void
-		{
-			if (!msg) return;
-			trace(msg.toString());
 		}
 	}
 }

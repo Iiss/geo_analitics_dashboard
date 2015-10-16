@@ -1,5 +1,6 @@
 package ru.marstefo.liss.net.commands
 {
+	import ru.marstefo.liss.utils.LogService;
 	import eu.alebianco.robotlegs.utils.impl.AsyncCommand;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -13,6 +14,8 @@ package ru.marstefo.liss.net.commands
 	 */
 	public class LoadCommandBase extends AsyncCommand
 	{
+		[Inject]
+		public var logger:LogService;
 		
 		public function LoadCommandBase() 
 		{
@@ -74,8 +77,7 @@ package ru.marstefo.liss.net.commands
 		
 		private function _reportError(e:*):void
 		{
-			//ErrorReportService.reportError(e);
-			trace(e.toString());
+			logger.error(e.toString());
 			dispatchComplete(false);
 		}
 
