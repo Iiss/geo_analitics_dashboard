@@ -12,7 +12,9 @@ package mvc.views.components
 		{
 			super();
 			styleName = "cellLabel";
-			filters = [new GlowFilter(0,1,4,4,2)];
+			filters = [new GlowFilter(0, 1, 4, 4, 2)];
+			mouseEnabled = false;
+			mouseChildren = false;
 		}	
 	}
 }
