@@ -19,6 +19,8 @@
 			var row_h:Number = height / rows;
 			var g:Graphics = mapOverlay.graphics;
 			
+			mapOverlay.removeAllElements();
+			
 			g.clear();
 			g.lineStyle(0.25, 0xffffff,.3);
 			
@@ -66,12 +68,10 @@
 		</s:layout>
 	</s:List>
 	<s:Group id="mapOverlay" width="100%" height="100%" />
-	<s:Panel visible="false">
-		<s:layout>
-			<s:VerticalLayout/>
-		</s:layout>
-		<s:List id="layersList"/>
-		<s:Label />
-		
-	</s:Panel>
+	<s:DataGroup id="layersList" width="150" x="400"
+		itemRenderer="mvc.views.itemRenderers.LayerListItemRenderer" >
+			 <s:layout>
+				<s:VerticalLayout/>
+			</s:layout>
+	</s:DataGroup>
 </s:Group>
