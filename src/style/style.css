@@ -1,0 +1,17 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+s|Application{
+	backgroundColor:#CCCCCC;
+	modalTransparency:1;
+	modalTransparencyBlur:0;
+	modalTransparencyColor:#CCCCCC;
+	
+}
+
+.cellLabel
+{
+	color: #ffffff;
+	fontSize: 6;
+	textAlign: center;
+}
