@@ -16,6 +16,8 @@ package
 	import mvc.views.ConsoleView;
 	import mvc.mediators.ConsoleMediator;
 	import ru.marstefo.liss.utils.LogService;
+	import mvc.mediators.AppMediator;
+	import mvc.commands.SetupSessionCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -50,12 +52,13 @@ package
 			//MODELS
 			injector.map(ConfigModel).asSingleton();
 			injector.map(SessionModel).toValue(new SessionModel());
-			injector.map(SmartFox).toValue(new SmartFox());
+			injector.map(SmartFox).asSingleton();
 			injector.map(LogService).asSingleton();
 			//MEDIATORS
 			mediatorMap.map(ConsoleView).toMediator(ConsoleMediator);
+			mediatorMap.map(App).toMediator(AppMediator);
 			//event
-			eventCommandMap.map(SessionEvent.SESSION_READY, SessionEvent).toCommand(TestCommand);
+			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

@@ -40,8 +40,8 @@ package mvc.mediators
 		private function _onLogger(e:LoggerEvent):void
 		{
 			var color:uint = Math.random() * 0xFFFFFF;
-			
 			var prefix:String = "";
+
 			switch(e.type)
 			{
 				case LoggerEvent.WARNING:
