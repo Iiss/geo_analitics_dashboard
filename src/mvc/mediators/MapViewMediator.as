@@ -11,7 +11,9 @@ package mvc.mediators
 	import flash.events.MouseEvent;
 	import spark.components.supportClasses.ItemRenderer;
 	import spark.components.ToggleButton;
-	import com.smartfoxserver.v2.entities.data.SFSObject;
+	import com.smartfoxserver.v2.core.SFSEvent;
+	import com.smartfoxserver.v2.entities.data.SFSArray;
+	import com.smartfoxserver.v2.entities.data.ISFSObject;
 	/**
 	 * ...
 	 * @author liss
@@ -36,6 +38,7 @@ package mvc.mediators
 		{
 			super.initialize();
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
+			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _onRoomVarsUpdate);
 			//ui
 			eventMap.mapListener(view.layersList, MouseEvent.MOUSE_DOWN, _invalidateLayerSelection);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
@@ -44,14 +47,21 @@ package mvc.mediators
 		private function _onSessionReady(e:SessionEvent):void
 		{
 			var room:Room = sfs.lastJoinedRoom;
-			selectLayer("1");
-			view.layersList.dataProvider = new ArrayCollection([
-			{label:"Радиолокация",id:"1"}, 
-			{label:"Гравиоразведка",id:"2"},
-			{label:"Гравиоразведка",id:"2"},
-			{label:"Гравиоразведка",id:"2"}
-			]);
-			view.drawGrid();
+			//selectLayer("1");
+			var a:*= (room.getVariable("layers").getSFSArrayValue() as SFSArray).toArray();
+			var mapInfo:Object = room.getVariable("mapInfo").getSFSObjectValue().toObject();
+			var w:int = mapInfo["width"];
+			var h:int = mapInfo["height"];
+			
+			var arr:Array = new Array();
+			for (var t:int = 0; t < w * h; t++)
+			{
+				arr.push(1);
+			}
+			view.tileList.dataProvider = new ArrayCollection(arr);
+			
+			view.layersList.dataProvider = new ArrayCollection(a);
+			view.drawGrid(w,h);
 		}
 		
 		private function _invalidateLayerSelection(e:MouseEvent):void
@@ -96,6 +106,12 @@ package mvc.mediators
 			var ge:GameEvent = new GameEvent(GameEvent.SCAN_REQUEST);
 			ge.data = { x:ind % 32, y:Math.floor(ind / 32), layer_id:layerId };
 			dispatch(ge);
+		}
+		
+		private function _onRoomVarsUpdate(e:SFSEvent):void
+		{
+			trace(e.toString());
+			var a:int = 1;
 		}
 	}
 }

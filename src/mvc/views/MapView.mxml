@@ -19,6 +19,11 @@
 			var row_h:Number = height / rows;
 			var g:Graphics = mapOverlay.graphics;
 			
+			mapTiles.requestedColumnCount = col;
+			mapTiles.requestedRowCount = rows;
+			mapTiles.columnWidth = col_w;
+			mapTiles.rowHeight = row_h;
+			
 			mapOverlay.removeAllElements();
 			
 			g.clear();
@@ -58,13 +63,9 @@
 	</fx:Script>
 	<s:Image width="100%" height="100%" scaleMode="zoom"
 		source="data/map.jpg"/>
-	<s:List id="tileList" width="100%" height="100%"
-	borderVisible="false"
-				contentBackgroundAlpha="0">
+	<s:List id="tileList" width="100%" height="100%" borderVisible="false" contentBackgroundAlpha="0">
 		<s:layout>
-			<s:TileLayout
-				requestedColumnCount="32" columnWidth="25" rowHeight="25"
-				verticalGap="0" horizontalGap="0" requestedRowCount="18"/>
+			<s:TileLayout id="mapTiles" verticalGap="0" horizontalGap="0"/>
 		</s:layout>
 	</s:List>
 	<s:Group id="mapOverlay" width="100%" height="100%" />

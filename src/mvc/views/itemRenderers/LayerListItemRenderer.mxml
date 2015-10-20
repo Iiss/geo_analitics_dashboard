@@ -7,5 +7,5 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<s:ToggleButton label="{data.label}" width="100%"/>
+	<s:ToggleButton label="{data.title}" width="100%"/>
 </s:ItemRenderer>

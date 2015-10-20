@@ -1,27 +1,26 @@
 package  
 {
 	import com.smartfoxserver.v2.SmartFox;
+	import mvc.commands.SendScanRequestCommand;
+	import mvc.commands.SetupSessionCommand;
 	import mvc.commands.StartupCommand;
+	import mvc.events.GameEvent;
+	import mvc.mediators.AppMediator;
+	import mvc.mediators.ConsoleMediator;
+	import mvc.mediators.MapViewMediator;
+	import mvc.models.SessionEvent;
+	import mvc.models.SessionModel;
+	import mvc.views.ConsoleView;
+	import mvc.views.MapView;
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.extensions.directCommandMap.api.IDirectCommandMap;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+	import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
-	import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-	import mvc.models.SessionModel;
-	import mvc.models.SessionEvent;
-	import mvc.commands.TestCommand;
-	import mvc.views.ConsoleView;
-	import mvc.mediators.ConsoleMediator;
 	import ru.marstefo.liss.utils.LogService;
-	import mvc.mediators.AppMediator;
-	import mvc.commands.SetupSessionCommand;
-	import mvc.views.MapView;
-	import mvc.mediators.MapViewMediator;
-	import mvc.commands.SendScanRequestCommand;
-	import mvc.events.GameEvent;
 	/**
 	 * ...
 	 * @author liss
