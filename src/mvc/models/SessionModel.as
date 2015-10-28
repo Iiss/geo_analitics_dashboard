@@ -74,9 +74,9 @@ package mvc.models
 			_scanReq = dumpToArray(SCAN_REQUESTS_DATA_VAR);
 			if (_scanReq)
 			{
-				for each( var obj in scanData.length)
+				for each( var obj:* in _scanReq)
 				{
-					var c:CellModel = _cells[obj.x * _mapInfo.width + obj.y] as CellModel;
+					var c:CellModel = _cells[obj.cell_x * _mapInfo.width + obj.cell_y] as CellModel;
 					if (c)
 					{
 						c.addScanRequest(obj.layer_id)
@@ -90,9 +90,9 @@ package mvc.models
 			var scanData:Array = dumpToArray(SCAN_DATA_VAR);
 			if (scanData)
 			{
-				for each( var obj in scanData.length)
+				for each( var obj:* in scanData)
 				{
-					var c:CellModel = _cells[obj[i].x * _mapInfo.width + obj[i].y] as CellModel;
+					var c:CellModel = _cells[obj.cell_x * _mapInfo.width + obj.cell_y] as CellModel;
 					if (c)
 					{
 						c.addValue(obj.layer_id,obj.value)
