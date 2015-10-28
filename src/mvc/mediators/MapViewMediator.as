@@ -39,7 +39,19 @@ package mvc.mediators
 			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _onRoomVarsUpdate);
 			//ui
 			eventMap.mapListener(view.layersList, MouseEvent.MOUSE_DOWN, _invalidateLayerSelection);
+			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
+		}
+		
+		private function _onMapClick(e:MouseEvent):void
+		{
+			var cw:Number = view.clickArea.width / session.mapInfo.width;
+			var rh:Number = view.clickArea.height / session.mapInfo.height;
+			
+			var x:Number = Math.floor(e.localX/cw);
+			var y:Number = Math.floor(e.localY/rh);
+			
+			trace('select x=' + x + ', y=' + y);
 		}
 		
 		private function _onSessionReady(e:SessionEvent):void
@@ -48,6 +60,7 @@ package mvc.mediators
 			view.layersList.dataProvider = new ArrayCollection(session.layers);
 			view.drawGrid(session.mapInfo.width, session.mapInfo.height);
 			
+			var a:int = 1;
 			//selectLayer("1");
 		}
 		

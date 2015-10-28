@@ -9,6 +9,7 @@ package mvc.events
 	public class GameEvent extends Event 
 	{
 		public static const SCAN_REQUEST:String = "SCAN_REQUEST";
+		public static const SELECT_CELL:String = "SELECT_CELL";
 		public var data:*
 		
 		public function GameEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 

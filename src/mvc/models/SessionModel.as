@@ -1,5 +1,6 @@
 package mvc.models 
 {
+	import com.smartfoxserver.v2.entities.variables.RoomVariable;
 	import flash.events.EventDispatcher;
 	import org.osflash.signals.Signal;
 	import flash.utils.Timer;
@@ -13,11 +14,14 @@ package mvc.models
 	public class SessionModel extends EventDispatcher
 	{
 		public const LAYERS_DATA_VAR:String = "layers";
+		public const SCAN_REQUESTS_DATA_VAR:String = "scanRequests";
+		public const SCAN_DATA_VAR:String  = "scanData";
 		public const MAP_INFO_DATA_VAR:String = "mapInfo";
 		private var _room:Room;
 		private var _layers:Array;
 		private var _mapInfo:MapInfo;
 		private var _cells:Array;
+		private var _scanReq:Array;
 		
 		public function SessionModel() 
 		{
@@ -29,14 +33,11 @@ package mvc.models
 			dispatchEvent(new SessionEvent(SessionEvent.LOAD));
 			
 			_room = room;
-			_layers = (room.getVariable(LAYERS_DATA_VAR).getSFSArrayValue() as SFSArray).toArray();
 			_mapInfo.setup(room.getVariable("mapInfo").getSFSObjectValue().toObject());
 			
-			_cells = new Array();
-			for (var i:int = 0; i < _mapInfo.width * _mapInfo.height; i++)
-			{
-				_cells.push(1);
-			}
+			fillBlankData()
+			attachScanRequests();
+			attachScanResults();
 			
 			//temp functionality
 			var t:Timer = new Timer(3000, 1);
@@ -52,5 +53,69 @@ package mvc.models
 		public function get layers():Array { return _layers; }
 		public function get mapInfo():MapInfo { return _mapInfo; }
 		public function get room():Room { return _room; }
+		
+		private function fillBlankData():void
+		{
+			_layers = dumpToArray(LAYERS_DATA_VAR);
+			if (_layers && _layers.length>0)
+			{
+				_cells = new Array();
+				var cells_total:int = _mapInfo.width * _mapInfo.height;
+				
+				for (var i:int = 0; i < cells_total; i++)
+				{
+					_cells[i] = new CellModel(_layers);
+				}
+			}	
+		}
+		
+		private function attachScanRequests():void
+		{
+			_scanReq = dumpToArray(SCAN_REQUESTS_DATA_VAR);
+			if (_scanReq)
+			{
+				for each( var obj in scanData.length)
+				{
+					var c:CellModel = _cells[obj.x * _mapInfo.width + obj.y] as CellModel;
+					if (c)
+					{
+						c.addScanRequest(obj.layer_id)
+					}
+				}
+			}
+		}
+		
+		private function attachScanResults():void
+		{
+			var scanData:Array = dumpToArray(SCAN_DATA_VAR);
+			if (scanData)
+			{
+				for each( var obj in scanData.length)
+				{
+					var c:CellModel = _cells[obj[i].x * _mapInfo.width + obj[i].y] as CellModel;
+					if (c)
+					{
+						c.addValue(obj.layer_id,obj.value)
+					}
+				}
+			}
+		}
+		private function dumpToArray(varName:String):Array
+		{
+			if (_room)
+			{
+				var roomVar:RoomVariable =  _room.getVariable(varName)
+				if (roomVar)
+				{
+					var arr:SFSArray = roomVar.getSFSArrayValue() as SFSArray;
+					if (arr)
+					{
+						return arr.toArray();
+					}
+				}
+			}
+			
+			return null
+		}
 	}
 }
