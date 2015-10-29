@@ -69,14 +69,14 @@ package mvc.models
 			}	
 		}
 		
-		private function attachScanRequests():void
+		public function attachScanRequests():void
 		{
 			_scanReq = dumpToArray(SCAN_REQUESTS_DATA_VAR);
 			if (_scanReq)
 			{
 				for each( var obj:* in _scanReq)
 				{
-					var c:CellModel = _cells[obj.cell_x * _mapInfo.width + obj.cell_y] as CellModel;
+					var c:CellModel = _cells[obj.cell_x  + obj.cell_y * _mapInfo.width] as CellModel;
 					if (c)
 					{
 						c.addScanRequest(obj.layer_id)
@@ -92,7 +92,7 @@ package mvc.models
 			{
 				for each( var obj:* in scanData)
 				{
-					var c:CellModel = _cells[obj.cell_x * _mapInfo.width + obj.cell_y] as CellModel;
+					var c:CellModel = _cells[obj.cell_x + obj.cell_y * _mapInfo.width] as CellModel;
 					if (c)
 					{
 						c.addValue(obj.layer_id,obj.value)

@@ -8,10 +8,8 @@
 	<fx:Script>
 		<![CDATA[
 		import flash.display.Graphics;
-		import flash.filters.BlurFilter;
-		import flash.filters.DropShadowFilter;
-		import flash.filters.GlowFilter;
 		import mvc.views.components.CellLabel;
+		import mx.collections.ArrayCollection;
 		
 		public function drawGrid(col:int=32,rows:int=18):void
 		{
@@ -59,36 +57,41 @@
 				mapOverlay.addElement(l);
 			}
 		}
+		
+		public function setLayerId(id:int):void
+		{
+			TileRenderer.layerId = id;
+			(tileList.dataProvider as ArrayCollection).refresh();
+		}
 		]]>
 	</fx:Script>
 	<s:Image width="100%" height="100%" scaleMode="zoom"
 		source="data/map.jpg"/>
-	<s:List id="tileList" width="100%" height="100%" borderVisible="false" contentBackgroundAlpha="0"
-	 mouseEnabled="false" mouseChildren="false"
-	 itemRenderer="mvc.views.itemRenderers.TileRenderer" >
+	<s:DataGroup id="tileList" width="100%" height="100%" contentBackgroundAlpha="0"
+		mouseEnabled="false" mouseChildren="false"
+		itemRenderer="mvc.views.itemRenderers.TileRenderer" >
 		<s:layout>
 			<s:TileLayout id="mapTiles" verticalGap="0" horizontalGap="0"/>
 		</s:layout>
-	</s:List>
+	</s:DataGroup>
 	<s:Group id="mapOverlay" width="100%" height="100%" />
 	<s:Group id="clickArea" width="100%" height="100%" >
 		<s:Rect width="100%" height="100%" alpha="0">
-		<s:fill>
-			<s:SolidColor color="0x000000"/>
-		</s:fill>
-	</s:Rect>
+			<s:fill>
+				<s:SolidColor color="0x000000"/>
+			</s:fill>
+		</s:Rect>
 	</s:Group>
 	
 	<s:BorderContainer width="150" x="400" height="400">
 		<s:layout>
 			<s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
 		</s:layout>
-		<s:List id="layersList" width="100%" 
-			itemRenderer="mvc.views.itemRenderers.LayerListItemRenderer" >
-				 <s:layout>
-					<s:VerticalLayout horizontalAlign="justify" gap="0" />
-				</s:layout>
-		</s:List>
+		<s:ButtonBar id="layersList" width="100%" requireSelection="true" labelField="title">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="justify" gap="0"/>
+			</s:layout>
+		</s:ButtonBar>
 		<s:TextArea height="100%" width="100%"/>
 		<s:Button id="scanBtn" label="Scan Request" width="100%"/>
 		<s:Button id="mineBtn" label="Mine Request" width="100%"/>

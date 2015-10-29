@@ -10,6 +10,7 @@ package mvc.events
 	{
 		public static const SCAN_REQUEST:String = "SCAN_REQUEST";
 		public static const SELECT_CELL:String = "SELECT_CELL";
+		public static const SELECT_LAYER:String = "SELECT_LAYER";
 		public var data:*
 		
 		public function GameEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 
