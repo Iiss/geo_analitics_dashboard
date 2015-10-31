@@ -52,7 +52,10 @@ package mvc.mediators
 			if (!_selection) _selection = new Point();
 			
 			_selection.x = Math.floor(e.localX/cw);
-			_selection.y = Math.floor(e.localY/rh);
+			_selection.y = Math.floor(e.localY / rh);
+			
+			//validate cell info
+			view.cellInfo.showCellInfo(session.layers,session.cells[_selection.x + _selection.y * session.mapInfo.width],_selection.x,_selection.y);
 		}
 		
 		private function _onSessionReady(e:SessionEvent):void
