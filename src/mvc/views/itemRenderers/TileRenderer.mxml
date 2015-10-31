@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo" >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+		import mvc.models.CellModel;
+		public static var layerId:int;
+		
+		private function checkV(data:*):Boolean
+		{
+			var cell:CellModel = data as CellModel;
+			if (cell && cell.layers[layerId])
+			{
+				return cell.layers[layerId].scanRequest;
+			}
+			return false;
+		}
+		
+		]]>
+	</fx:Script>
+	<s:Label id="scan_need" visible="{checkV(data)}" text="S" color="0xFFFFFF" />
+</s:ItemRenderer>
