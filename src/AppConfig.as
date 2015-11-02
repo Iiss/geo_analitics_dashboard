@@ -1,6 +1,8 @@
 package  
 {
 	import com.smartfoxserver.v2.SmartFox;
+	import mvc.commands.ReportScanResultCommand;
+	import mvc.commands.SendProbeRequestCommand;
 	import mvc.commands.SendScanRequestCommand;
 	import mvc.commands.SetupSessionCommand;
 	import mvc.commands.StartupCommand;
@@ -21,7 +23,6 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
-	import mvc.commands.ReportScanResultCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -66,6 +67,7 @@ package
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);
 			eventCommandMap.map(GameEvent.SCAN_RESULT, GameEvent).toCommand(ReportScanResultCommand);
+			eventCommandMap.map(GameEvent.PROBE_REQUEST, GameEvent).toCommand(SendProbeRequestCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

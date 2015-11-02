@@ -43,6 +43,7 @@ package mvc.mediators
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
 			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
+			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeBtnClick);
 		}
 		
 		private function _onMapClick(e:MouseEvent):void
@@ -79,25 +80,31 @@ package mvc.mediators
 		
 		private function _onScanRequest(e:MouseEvent):void
 		{
-			var w:int = session.mapInfo.width;
 			var layerId:int = parseInt(view.layersList.selectedItem['id']);
-			
 			if (!(layerId && _selection)) return;
-			
-			var ge:GameEvent = new GameEvent(GameEvent.SCAN_REQUEST);
-			ge.data = { x:_selection.x, y:_selection.y, layer_id:layerId };
-			dispatch(ge);
+			_dispatchCommandEvent(GameEvent.SCAN_REQUEST,
+								{ x:_selection.x, y:_selection.y, layer_id:layerId })
 		}
 		
 		private function _onScanResultClick(e:MouseEvent):void
 		{
-			var w:int = session.mapInfo.width;
 			var layerId:int = parseInt(view.layersList.selectedItem['id']);
-			
 			if (!(layerId && _selection)) return;
-			
-			var ge:GameEvent = new GameEvent(GameEvent.SCAN_RESULT);
-			ge.data = { x:_selection.x, y:_selection.y, layer_id:layerId };
+			_dispatchCommandEvent(GameEvent.SCAN_RESULT,
+								{ x:_selection.x, y:_selection.y, layer_id:layerId })
+		}
+		
+		private function _onProbeBtnClick(e:MouseEvent):void
+		{
+			if (!_selection) return;
+			_dispatchCommandEvent(GameEvent.PROBE_REQUEST,
+								{ x:_selection.x, y:_selection.y })
+		}
+		
+		private function _dispatchCommandEvent(eventType:String,data:Object):void
+		{
+			var ge:GameEvent = new GameEvent(eventType);
+			ge.data = data;
 			dispatch(ge);
 		}
 		
