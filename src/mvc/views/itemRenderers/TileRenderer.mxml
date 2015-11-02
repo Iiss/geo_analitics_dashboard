@@ -21,7 +21,19 @@
 			return false;
 		}
 		
+		private function checkValue(data:*):Boolean
+		{
+			var cell:CellModel = data as CellModel;
+			if (cell && cell.layers[layerId])
+			{
+				value_txt.text = cell.layers[layerId].value;
+				return !isNaN(cell.layers[layerId].value);
+			}
+			return false;
+		}
+		
 		]]>
 	</fx:Script>
 	<s:Label id="scan_need" visible="{checkV(data)}" text="S" color="0xFFFFFF" />
+	<s:Label id="value_txt" visible="{checkValue(data)}"/>
 </s:ItemRenderer>

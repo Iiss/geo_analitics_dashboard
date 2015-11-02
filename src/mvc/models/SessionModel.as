@@ -85,7 +85,7 @@ package mvc.models
 			}
 		}
 		
-		private function attachScanResults():void
+		public function attachScanResults():void
 		{
 			var scanData:Array = dumpToArray(SCAN_DATA_VAR);
 			if (scanData)

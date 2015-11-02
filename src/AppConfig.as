@@ -21,6 +21,7 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
+	import mvc.commands.ReportScanResultCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -64,6 +65,7 @@ package
 			//event
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);
+			eventCommandMap.map(GameEvent.SCAN_RESULT, GameEvent).toCommand(ReportScanResultCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

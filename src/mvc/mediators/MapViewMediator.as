@@ -42,6 +42,7 @@ package mvc.mediators
 			eventMap.mapListener(view.layersList, IndexChangeEvent.CHANGE, _invalidateLayerSelection);
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
+			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
 		}
 		
 		private function _onMapClick(e:MouseEvent):void
@@ -88,9 +89,22 @@ package mvc.mediators
 			dispatch(ge);
 		}
 		
+		private function _onScanResultClick(e:MouseEvent):void
+		{
+			var w:int = session.mapInfo.width;
+			var layerId:int = parseInt(view.layersList.selectedItem['id']);
+			
+			if (!(layerId && _selection)) return;
+			
+			var ge:GameEvent = new GameEvent(GameEvent.SCAN_RESULT);
+			ge.data = { x:_selection.x, y:_selection.y, layer_id:layerId };
+			dispatch(ge);
+		}
+		
 		private function _onRoomVarsUpdate(e:SFSEvent):void
 		{
 			session.attachScanRequests();
+			session.attachScanResults();
 			(view.tileList.dataProvider as ArrayCollection).refresh();
 		}
 	}
