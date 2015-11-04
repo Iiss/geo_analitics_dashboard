@@ -38,12 +38,15 @@ package mvc.mediators
 			super.initialize();
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
 			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _onRoomVarsUpdate);
+			eventMap.mapListener(sfs, SFSEvent.CONNECTION_LOST, _onConnectionLost);
 			//ui
 			eventMap.mapListener(view.layersList, IndexChangeEvent.CHANGE, _invalidateLayerSelection);
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
 			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
 			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeBtnClick);
+			eventMap.mapListener(view.deliverProbeBtn, MouseEvent.MOUSE_DOWN, _onDeliverProbeBtnClick);
+			eventMap.mapListener(view.assignProbeBtn, MouseEvent.MOUSE_DOWN, _onAssignProbeBtnClick);
 		}
 		
 		private function _onMapClick(e:MouseEvent):void
@@ -101,6 +104,19 @@ package mvc.mediators
 								{ x:_selection.x, y:_selection.y })
 		}
 		
+		private function _onDeliverProbeBtnClick(e:MouseEvent):void
+		{
+			if (!_selection) return;
+			_dispatchCommandEvent(GameEvent.DELIVER_PROBE,
+								{ x:_selection.x, y:_selection.y, rock_key:26})
+		}
+		
+		private function _onAssignProbeBtnClick(e:MouseEvent):void
+		{
+			_dispatchCommandEvent(GameEvent.ASSIGN_PROBE,
+								{ probe_id:1, kern_id:2128506})
+		}
+		
 		private function _dispatchCommandEvent(eventType:String,data:Object):void
 		{
 			var ge:GameEvent = new GameEvent(eventType);
@@ -113,6 +129,11 @@ package mvc.mediators
 			session.attachScanRequests();
 			session.attachScanResults();
 			(view.tileList.dataProvider as ArrayCollection).refresh();
+		}
+		
+		private function _onConnectionLost(e:SFSEvent):void
+		{
+			trace('connection lost...');
 		}
 	}
 }

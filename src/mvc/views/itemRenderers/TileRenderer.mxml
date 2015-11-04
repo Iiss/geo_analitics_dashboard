@@ -16,7 +16,10 @@
 			var cell:CellModel = data as CellModel;
 			if (cell && cell.layers[layerId])
 			{
-				return cell.layers[layerId].scanRequest;
+				if (isNaN(cell.layers[layerId].value))
+				{
+					return cell.layers[layerId].scanRequest;
+				}	
 			}
 			return false;
 		}

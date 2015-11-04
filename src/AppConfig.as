@@ -23,6 +23,8 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
+	import mvc.commands.DeliverProbeCommand;
+	import mvc.commands.AssignProbeCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -68,6 +70,8 @@ package
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);
 			eventCommandMap.map(GameEvent.SCAN_RESULT, GameEvent).toCommand(ReportScanResultCommand);
 			eventCommandMap.map(GameEvent.PROBE_REQUEST, GameEvent).toCommand(SendProbeRequestCommand);
+			eventCommandMap.map(GameEvent.DELIVER_PROBE, GameEvent).toCommand(DeliverProbeCommand);
+			eventCommandMap.map(GameEvent.ASSIGN_PROBE, GameEvent).toCommand(AssignProbeCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}
