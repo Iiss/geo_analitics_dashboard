@@ -1,13 +1,10 @@
 package mvc.mediators 
 {
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	import com.smartfoxserver.v2.SmartFox;
 	import com.smartfoxserver.v2.core.SFSEvent;
-	import mvc.events.GameEvent;
 	/**
 	 * ...
 	 * @author liss
@@ -49,25 +46,8 @@ package mvc.mediators
 		private function _onSessionReady(e:SessionEvent):void
 		{
 			view.currentState = "in_game";
-			var t:Timer = new Timer(24000);
-			t.addEventListener(TimerEvent.TIMER, onTimer);
-			t.start();
-		}
-		private function onTimer(e:*):void
-		{
-			trace("dispatch");
-			_dispatchCommandEvent(GameEvent.ASSIGN_PROBE,
-								{ probe_id:1, kern_id:2128506})
-			
 		}
 		
-		
-		private function _dispatchCommandEvent(eventType:String,data:Object):void
-		{
-			var ge:GameEvent = new GameEvent(eventType);
-			ge.data = data;
-			dispatch(ge);
-		}
 	}
 
 }
