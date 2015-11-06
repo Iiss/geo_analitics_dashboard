@@ -8,7 +8,10 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+		import flash.geom.ColorTransform;
 		import mvc.models.CellModel;
+		import mvc.models.ValueDictionary;
+		
 		public static var layerId:int;
 		
 		private function checkV(data:*):Boolean
@@ -29,14 +32,23 @@
 			var cell:CellModel = data as CellModel;
 			if (cell && cell.layers[layerId])
 			{
-				value_txt.text = cell.layers[layerId].value;
-				return !isNaN(cell.layers[layerId].value);
+				var value:int = cell.layers[layerId].value
+				var ct:ColorTransform = new ColorTransform();
+				ct.color = ValueDictionary.PALETTE[value]
+				theBackgroundObject.setColorTransform(ct);
+				return value > 0;//!isNaN(value);
 			}
 			return false;
 		}
 		
 		]]>
 	</fx:Script>
+	<s:Rect id="theBackgroundObject" top="0" bottom="0" left="0" right="0"
+	visible="{checkValue(data)}">
+        <s:fill>
+            <s:SolidColor color="0"
+                alpha=".75"/>
+        </s:fill>
+    </s:Rect>
 	<s:Label id="scan_need" visible="{checkV(data)}" text="S" color="0xFFFFFF" />
-	<s:Label id="value_txt" visible="{checkValue(data)}"/>
 </s:ItemRenderer>

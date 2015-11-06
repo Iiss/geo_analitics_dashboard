@@ -25,6 +25,8 @@ package
 	import ru.marstefo.liss.utils.LogService;
 	import mvc.commands.DeliverProbeCommand;
 	import mvc.commands.AssignProbeCommand;
+	import com.smartfoxserver.v2.core.SFSEvent;
+	import mvc.commands.UpdateRoomVarsCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -72,6 +74,7 @@ package
 			eventCommandMap.map(GameEvent.PROBE_REQUEST, GameEvent).toCommand(SendProbeRequestCommand);
 			eventCommandMap.map(GameEvent.DELIVER_PROBE, GameEvent).toCommand(DeliverProbeCommand);
 			eventCommandMap.map(GameEvent.ASSIGN_PROBE, GameEvent).toCommand(AssignProbeCommand);
+			eventCommandMap.map(SFSEvent.ROOM_VARIABLES_UPDATE, SFSEvent).toCommand(UpdateRoomVarsCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

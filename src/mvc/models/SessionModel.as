@@ -54,6 +54,33 @@ package mvc.models
 		public function get mapInfo():MapInfo { return _mapInfo; }
 		public function get room():Room { return _room; }
 		
+		public function updateRoomVars(varsArr:Array):void
+		{
+			var mapUpdated:Boolean = false;
+			
+			for each (var roomVar:String in varsArr)
+			{
+				switch(roomVar)
+				{
+					case SCAN_REQUESTS_DATA_VAR:
+						attachScanRequests();
+						mapUpdated = true;
+						break;
+						
+					case SCAN_DATA_VAR:
+						attachScanResults();
+						mapUpdated = true;
+						break;
+				}
+				
+			}
+			
+			if (mapUpdated)
+			{
+				dispatchEvent(new SessionEvent(SessionEvent.MAP_UPDATE));
+			}
+		}
+		
 		private function fillBlankData():void
 		{
 			_layers = dumpToArray(LAYERS_DATA_VAR);

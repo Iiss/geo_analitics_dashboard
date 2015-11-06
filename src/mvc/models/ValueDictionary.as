@@ -7,7 +7,8 @@ package mvc.models
 	 */
 	public class ValueDictionary 
 	{
-		public static const VALUES:Object = new Object
+		private static var _legend:Array;
+		public static const VALUES:Object =
 		{
 			//Rocks
 			1:"Bas", 2:"BasMagnitoMg", 3:"Peredot", 4:"PeredotPlCr",
@@ -21,14 +22,23 @@ package mvc.models
 			26:"0",27:"25",28:"50",29:"75",30:"100"
 		}
 		
-		public static const LEGEND:Object = new Object
-		{
+		public static const PALETTE:Object = {
 			//radioscale
-			1: { 0:0xFFFBBE, 10:0xF7F07B, 15:0xFDEF06, 40:0xE4DB36, 100:0xC7BC0A },
+			16:0xFFFBBE,17:0xF7F07B,18:0xFDEF06,19:0xE4DB36,20:0xC7BC0A,
 			//magnitoscale
-			2: { 0:0xE3A9A8, 25:0xD67C7C, 50:0xE1696A, 75:0xC83636, 100:0xA30D0E },
+			21:0xE3A9A8,22:0xD67C7C,23:0xE1696A,24:0xC83636,25:0xA30D0E,
 			//graviscale
-			3:{0:0x99E1A2,25:0x6DBE79,50:0x3EA04B,75:0x1C8E2E,100:0x046812}
+			26:0x99E1A2,27:0x6DBE79,28:0x3EA04B,29:0x1C8E2E,30:0x046812
 		}
+	/*	public static function get LEGEND():Object
+		{
+			//_legend
+			//radioscale
+			1: { 0:PALETTE[16], 10:PALETTE[17], 15:PALETTE[18], 40:PALETTE[19], 100:PALETTE[20] },
+			//magnitoscale
+			2: { 0:PALETTE[21], 25:PALETTE[22], 50:PALETTE[23], 75:PALETTE[24], 100:PALETTE[25] },
+			//graviscale
+			3:{0:PALETTE[26], 25:PALETTE[27], 50:PALETTE[28], 75:PALETTE[29], 100:PALETTE[31]}
+		}*/
 	}
 }

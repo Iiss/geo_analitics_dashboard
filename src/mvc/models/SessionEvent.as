@@ -11,8 +11,8 @@ package mvc.models
 		public static const LOAD:String = "LOAD";
 		public static const READY:String = "READY";
 		public static const NEXT_SESSION:String = "NEXT_SESSION";
-		public static const SELECT_LAYER:String = "";
-		public static const SELECT_CELL:String = "";
+		public static const MAP_UPDATE:String = "MAP_UPDATE";
+		
 		
 		public function SessionEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 
 		{ 

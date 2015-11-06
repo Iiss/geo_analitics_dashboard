@@ -37,8 +37,8 @@ package mvc.mediators
 		{
 			super.initialize();
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
-			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _onRoomVarsUpdate);
-			eventMap.mapListener(sfs, SFSEvent.CONNECTION_LOST, _onConnectionLost);
+			eventMap.mapListener(session, SessionEvent.MAP_UPDATE, _onMapUpdate);
+			
 			//ui
 			eventMap.mapListener(view.layersList, IndexChangeEvent.CHANGE, _invalidateLayerSelection);
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
@@ -124,16 +124,9 @@ package mvc.mediators
 			dispatch(ge);
 		}
 		
-		private function _onRoomVarsUpdate(e:SFSEvent):void
+		private function _onMapUpdate(e:SessionEvent):void
 		{
-			session.attachScanRequests();
-			session.attachScanResults();
 			(view.tileList.dataProvider as ArrayCollection).refresh();
-		}
-		
-		private function _onConnectionLost(e:SFSEvent):void
-		{
-			trace('connection lost...');
 		}
 	}
 }

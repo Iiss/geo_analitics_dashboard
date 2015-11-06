@@ -87,7 +87,7 @@
 	<!-- endof data layer -->
 	
 	<!-- legend container -->
-	<s:BorderContainer width="150" x="400" height="250">
+	<s:BorderContainer width="150" x="650" height="100%">
 		<s:layout>
 			<s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
 		</s:layout>

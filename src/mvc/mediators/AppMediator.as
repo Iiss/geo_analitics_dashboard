@@ -31,6 +31,12 @@ package mvc.mediators
 			eventMap.mapListener(sfs, SFSEvent.ROOM_JOIN, _onConnection);
 			eventMap.mapListener(session, SessionEvent.LOAD, _onSessionLoad);
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
+			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _dispatchForward);
+		}
+		
+		private function _dispatchForward(e:SFSEvent):void
+		{
+			dispatch(e);
 		}
 		
 		private function _onConnection(e:SFSEvent):void

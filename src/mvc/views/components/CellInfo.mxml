@@ -10,6 +10,8 @@
 		<![CDATA[
 		import mvc.models.CellLayerModel;
 		import mvc.models.CellModel;
+		import mvc.models.ValueDictionary;
+		
 		public function showCellInfo(layers:Array, cell:CellModel,x:int,y:int):void
 		{
 			text = "";
@@ -21,7 +23,7 @@
 					text +='\n'+ l.title + ':'
 					var cellLayer:CellLayerModel = cell.layers[l.id];
 					var value:String = 'Нет данных';
-					if (cellLayer && !isNaN(cellLayer.value)) value = cellLayer.value.toString();
+					if (cellLayer && !isNaN(cellLayer.value)) value = ValueDictionary.VALUES[cellLayer.value];
 					text += value;
 				}
 			}
