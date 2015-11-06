@@ -1,16 +1,13 @@
 package mvc.mediators 
 {
-	import com.smartfoxserver.v2.core.SFSEvent;
 	import com.smartfoxserver.v2.SmartFox;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
 	import mvc.events.GameEvent;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
 	import mvc.views.MapView;
 	import mx.collections.ArrayCollection;
 	import robotlegs.bender.bundles.mvcs.Mediator;
-	import spark.events.IndexChangeEvent;
 	/**
 	 * ...
 	 * @author liss
@@ -40,11 +37,6 @@ package mvc.mediators
 			
 			//ui
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
-		/*	eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
-			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
-			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeBtnClick);
-			eventMap.mapListener(view.deliverProbeBtn, MouseEvent.MOUSE_DOWN, _onDeliverProbeBtnClick);
-			eventMap.mapListener(view.assignProbeBtn, MouseEvent.MOUSE_DOWN, _onAssignProbeBtnClick);*/
 		}
 		
 		private function _onMapClick(e:MouseEvent):void
@@ -81,20 +73,6 @@ package mvc.mediators
 			if (!(layerId && _selection)) return;
 			_dispatchCommandEvent(GameEvent.SCAN_RESULT,
 								{ x:_selection.x, y:_selection.y, layer_id:layerId })
-		}
-		
-		private function _onProbeBtnClick(e:MouseEvent):void
-		{
-			if (!_selection) return;
-			_dispatchCommandEvent(GameEvent.PROBE_REQUEST,
-								{ x:_selection.x, y:_selection.y })
-		}
-		
-		private function _onDeliverProbeBtnClick(e:MouseEvent):void
-		{
-			if (!_selection) return;
-			_dispatchCommandEvent(GameEvent.DELIVER_PROBE,
-								{ x:_selection.x, y:_selection.y, rock_key:26})
 		}
 		*/
 		private function _onAssignProbeBtnClick(e:MouseEvent):void

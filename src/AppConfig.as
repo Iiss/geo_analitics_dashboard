@@ -6,7 +6,7 @@ package
 	import mvc.commands.DeliverProbeCommand;
 	import mvc.commands.ReportScanResultCommand;
 	import mvc.commands.SelectCellCommand;
-	import mvc.commands.SendProbeRequestCommand;
+	import mvc.commands.SelectLayerCommand;
 	import mvc.commands.SendScanRequestCommand;
 	import mvc.commands.SetupSessionCommand;
 	import mvc.commands.StartupCommand;
@@ -14,9 +14,11 @@ package
 	import mvc.events.GameEvent;
 	import mvc.mediators.AppMediator;
 	import mvc.mediators.ConsoleMediator;
+	import mvc.mediators.LayerSelectorMediator;
 	import mvc.mediators.MapViewMediator;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
+	import mvc.views.components.LayerSelector;
 	import mvc.views.ConsoleView;
 	import mvc.views.MapView;
 	import robotlegs.bender.extensions.contextView.ContextView;
@@ -28,9 +30,6 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
-	import mvc.views.components.LayerSelector;
-	import mvc.mediators.LayerSelectorMediator;
-	import mvc.commands.SelectLayerCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -76,7 +75,6 @@ package
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);
 			eventCommandMap.map(GameEvent.SCAN_RESULT, GameEvent).toCommand(ReportScanResultCommand);
-			eventCommandMap.map(GameEvent.PROBE_REQUEST, GameEvent).toCommand(SendProbeRequestCommand);
 			eventCommandMap.map(GameEvent.DELIVER_PROBE, GameEvent).toCommand(DeliverProbeCommand);
 			eventCommandMap.map(GameEvent.ASSIGN_PROBE, GameEvent).toCommand(AssignProbeCommand);
 			eventCommandMap.map(SFSEvent.ROOM_VARIABLES_UPDATE, SFSEvent).toCommand(UpdateRoomVarsCommand);

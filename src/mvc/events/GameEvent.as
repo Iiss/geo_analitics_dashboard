@@ -9,7 +9,6 @@ package mvc.events
 	public class GameEvent extends Event 
 	{
 		public static const SCAN_REQUEST:String = "SCAN_REQUEST";
-		public static const PROBE_REQUEST:String = "PROBE_REQUEST";
 		public static const SCAN_RESULT:String = "SCAN_RESULT";
 		public static const SELECT_CELL:String = "SELECT_CELL";
 		public static const SELECT_LAYER:String = "SELECT_LAYER";
