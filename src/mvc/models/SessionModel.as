@@ -23,6 +23,7 @@ package mvc.models
 		private var _cells:Array;
 		private var _scanReq:Array;
 		private var _curCell:CellModel;
+		private var _curLayer:Object;
 		
 		public function SessionModel() 
 		{
@@ -61,6 +62,14 @@ package mvc.models
 			_curCell = value;
 			
 			dispatchEvent(new SessionEvent(SessionEvent.CELL_SELECTED));
+		}
+		public function get currentLayer():Object { return _curLayer; }
+		public function set currentLayer(value:Object):void
+		{
+			if (_curLayer == value) return;
+			_curLayer = value;
+			
+			dispatchEvent(new SessionEvent(SessionEvent.LAYER_SELECTED));
 		}
 		
 		

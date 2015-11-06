@@ -84,14 +84,17 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<!-- endof data layer -->
-	
-	<!-- legend container -->
-	<s:BorderContainer width="150" x="650" height="100%">
+	<s:BorderContainer height="150" y="330">
 		<s:layout>
+			<s:HorizontalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
+		</s:layout>
+		<comp:LayerSelector/>
+	</s:BorderContainer>
+	<!-- legend container -->
+	<!--<s:layout>
 			<s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
 		</s:layout>
-		<s:ButtonBar id="layersList" width="100%" requireSelection="true" labelField="title">
+		<s:ButtonBar id="layersList" width="100%">
 			<s:layout>
 				<s:VerticalLayout horizontalAlign="justify" gap="0"/>
 			</s:layout>
@@ -101,8 +104,5 @@
 		<s:Button id="probeBtn" label="Probe Request" width="100%"/>
 		<s:Button id="doScanBtn" label="Scan" width="100%"/>
 		<s:Button id="deliverProbeBtn" label="Deliver Probe" width="100%"/>
-		<s:Button id="assignProbeBtn" label="Assign Probe" width="100%"/>
-	</s:BorderContainer>
-	<!-- endof legend container -->
-	
+		<s:Button id="assignProbeBtn" label="Assign Probe" width="100%"/>-->
 </s:Group>

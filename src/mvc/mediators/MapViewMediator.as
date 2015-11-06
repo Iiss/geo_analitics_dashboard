@@ -36,10 +36,9 @@ package mvc.mediators
 			super.initialize();
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
 			eventMap.mapListener(session, SessionEvent.MAP_UPDATE, _onMapUpdate);
-			eventMap.mapListener(session, SessionEvent.CELL_SELECTED, _onCellSelected);
+			eventMap.mapListener(session, SessionEvent.LAYER_SELECTED, _onLayerSelected);
 			
 			//ui
-			eventMap.mapListener(view.layersList, IndexChangeEvent.CHANGE, _invalidateLayerSelection);
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
 		/*	eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
 			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
@@ -53,27 +52,19 @@ package mvc.mediators
 			var cw:Number = view.clickArea.width / session.mapInfo.width;
 			var rh:Number = view.clickArea.height / session.mapInfo.height;
 			
-			var ge:GameEvent =  new GameEvent(GameEvent.SELECT_CELL);
-			ge.data = { x:Math.floor(e.localX/cw), y:Math.floor(e.localY / rh) };
-			dispatch(ge);
+			_dispatchCommandEvent(GameEvent.SELECT_CELL,
+								{ x:Math.floor(e.localX/cw), y:Math.floor(e.localY / rh) })
 		}
 		
 		private function _onSessionReady(e:SessionEvent):void
 		{
 			view.tileList.dataProvider = new ArrayCollection(session.cells);
-			view.layersList.dataProvider = new ArrayCollection(session.layers);
 			view.drawGrid(session.mapInfo.width, session.mapInfo.height);
-			
-			if (session.layers.length > 0)
-			{
-				view.layersList.selectedIndex = 0;
-				_invalidateLayerSelection()
-			}
 		}
 		
-		private function _invalidateLayerSelection(e:IndexChangeEvent=null):void
+		private function _onLayerSelected(e:SessionEvent=null):void
 		{
-			view.setLayerId(session.layers[view.layersList.selectedIndex].id);
+			view.setLayerId(session.currentLayer.id);
 		}
 		
 	/*	private function _onScanRequest(e:MouseEvent):void
@@ -121,21 +112,7 @@ package mvc.mediators
 		
 		private function _onMapUpdate(e:SessionEvent):void
 		{
-			_varlidateCellInfo();
 			(view.tileList.dataProvider as ArrayCollection).refresh();
-		}
-		
-		private function _onCellSelected(e:SessionEvent):void
-		{
-			_varlidateCellInfo()
-		}
-		
-		private function _varlidateCellInfo():void
-		{
-			view.cellInfo.showCellInfo(session.layers,session.currentCell);
-		}
-		private function _validateScanBtn():void
-		{
 		}
 	}
 }

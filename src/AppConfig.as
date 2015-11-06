@@ -28,6 +28,9 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
+	import mvc.views.components.LayerSelector;
+	import mvc.mediators.LayerSelectorMediator;
+	import mvc.commands.SelectLayerCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -68,6 +71,7 @@ package
 			mediatorMap.map(App).toMediator(AppMediator);
 			mediatorMap.map(ConsoleView).toMediator(ConsoleMediator);
 			mediatorMap.map(MapView).toMediator(MapViewMediator);
+			mediatorMap.map(LayerSelector).toMediator(LayerSelectorMediator);
 			//event
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);
@@ -77,6 +81,7 @@ package
 			eventCommandMap.map(GameEvent.ASSIGN_PROBE, GameEvent).toCommand(AssignProbeCommand);
 			eventCommandMap.map(SFSEvent.ROOM_VARIABLES_UPDATE, SFSEvent).toCommand(UpdateRoomVarsCommand);
 			eventCommandMap.map(GameEvent.SELECT_CELL, GameEvent).toCommand(SelectCellCommand);
+			eventCommandMap.map(GameEvent.SELECT_LAYER, GameEvent).toCommand(SelectLayerCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}
