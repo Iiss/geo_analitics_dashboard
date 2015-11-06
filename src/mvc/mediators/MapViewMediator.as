@@ -67,13 +67,6 @@ package mvc.mediators
 								{ x:_selection.x, y:_selection.y, layer_id:layerId })
 		}
 		
-		private function _onScanResultClick(e:MouseEvent):void
-		{
-			var layerId:int = parseInt(view.layersList.selectedItem['id']);
-			if (!(layerId && _selection)) return;
-			_dispatchCommandEvent(GameEvent.SCAN_RESULT,
-								{ x:_selection.x, y:_selection.y, layer_id:layerId })
-		}
 		*/
 		private function _onAssignProbeBtnClick(e:MouseEvent):void
 		{

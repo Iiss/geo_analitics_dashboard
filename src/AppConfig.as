@@ -13,11 +13,13 @@ package
 	import mvc.commands.UpdateRoomVarsCommand;
 	import mvc.events.GameEvent;
 	import mvc.mediators.AppMediator;
+	import mvc.mediators.CellInfoPanelMediator;
 	import mvc.mediators.ConsoleMediator;
 	import mvc.mediators.LayerSelectorMediator;
 	import mvc.mediators.MapViewMediator;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
+	import mvc.views.components.CellInfoPanel;
 	import mvc.views.components.LayerSelector;
 	import mvc.views.ConsoleView;
 	import mvc.views.MapView;
@@ -30,6 +32,7 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
+	
 	/**
 	 * ...
 	 * @author liss
@@ -71,6 +74,7 @@ package
 			mediatorMap.map(ConsoleView).toMediator(ConsoleMediator);
 			mediatorMap.map(MapView).toMediator(MapViewMediator);
 			mediatorMap.map(LayerSelector).toMediator(LayerSelectorMediator);
+			mediatorMap.map(CellInfoPanel).toMediator(CellInfoPanelMediator);
 			//event
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Label xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+		import mvc.models.CellLayerModel;
+		import mvc.models.CellModel;
+		import mvc.models.ValueDictionary;
+		
+		public function showCellInfo(layers:Array, cell:CellModel):void
+		{
+			text = "";
+			if (cell && layers)
+			{
+				text = "Координаты: [" + cell.x + "," + cell.y + "]";
+				for each(var l:Object in layers)
+				{
+					text +='\n'+ l.title + ':'
+					var cellLayer:CellLayerModel = cell.layers[l.id];
+					var value:String = 'Нет данных';
+					if (cellLayer && !isNaN(cellLayer.value)) value = ValueDictionary.VALUES[cellLayer.value];
+					text += value;
+				}
+			}
+		}
+		]]>
+	</fx:Script>
+	
+</s:Label>

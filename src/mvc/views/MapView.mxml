@@ -84,11 +84,12 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<s:BorderContainer height="150" y="330">
+	<s:BorderContainer y="330">
 		<s:layout>
 			<s:HorizontalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
 		</s:layout>
-		<comp:LayerSelector/>
+		<comp:LayerSelector height="100%" />
+		<comp:CellInfoPanel height="100%"/>
 	</s:BorderContainer>
 	<!-- legend container -->
 	<!--<s:layout>
