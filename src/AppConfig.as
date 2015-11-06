@@ -1,11 +1,16 @@
 package  
 {
+	import com.smartfoxserver.v2.core.SFSEvent;
 	import com.smartfoxserver.v2.SmartFox;
+	import mvc.commands.AssignProbeCommand;
+	import mvc.commands.DeliverProbeCommand;
 	import mvc.commands.ReportScanResultCommand;
+	import mvc.commands.SelectCellCommand;
 	import mvc.commands.SendProbeRequestCommand;
 	import mvc.commands.SendScanRequestCommand;
 	import mvc.commands.SetupSessionCommand;
 	import mvc.commands.StartupCommand;
+	import mvc.commands.UpdateRoomVarsCommand;
 	import mvc.events.GameEvent;
 	import mvc.mediators.AppMediator;
 	import mvc.mediators.ConsoleMediator;
@@ -23,10 +28,6 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
-	import mvc.commands.DeliverProbeCommand;
-	import mvc.commands.AssignProbeCommand;
-	import com.smartfoxserver.v2.core.SFSEvent;
-	import mvc.commands.UpdateRoomVarsCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -75,6 +76,7 @@ package
 			eventCommandMap.map(GameEvent.DELIVER_PROBE, GameEvent).toCommand(DeliverProbeCommand);
 			eventCommandMap.map(GameEvent.ASSIGN_PROBE, GameEvent).toCommand(AssignProbeCommand);
 			eventCommandMap.map(SFSEvent.ROOM_VARIABLES_UPDATE, SFSEvent).toCommand(UpdateRoomVarsCommand);
+			eventCommandMap.map(GameEvent.SELECT_CELL, GameEvent).toCommand(SelectCellCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

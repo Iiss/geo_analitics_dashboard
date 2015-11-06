@@ -12,12 +12,12 @@
 		import mvc.models.CellModel;
 		import mvc.models.ValueDictionary;
 		
-		public function showCellInfo(layers:Array, cell:CellModel,x:int,y:int):void
+		public function showCellInfo(layers:Array, cell:CellModel):void
 		{
 			text = "";
 			if (cell && layers)
 			{
-				text = "Координаты: [" + x + "," + y + "]";
+				text = "Координаты: [" + cell.x + "," + cell.y + "]";
 				for each(var l:Object in layers)
 				{
 					text +='\n'+ l.title + ':'

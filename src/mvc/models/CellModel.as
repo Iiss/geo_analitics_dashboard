@@ -7,6 +7,9 @@ package mvc.models
 	public class CellModel 
 	{
 		public var layers:Array;
+		public var x:int;
+		public var y:int;
+		
 		public function CellModel(layersList:Array) 
 		{
 			layers = new Array();

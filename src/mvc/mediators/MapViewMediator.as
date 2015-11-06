@@ -26,8 +26,6 @@ package mvc.mediators
 		[Inject]
 		public var view:MapView;
 		
-		private var _selection:Point;
-		
 		public function MapViewMediator() 
 		{
 			
@@ -38,15 +36,16 @@ package mvc.mediators
 			super.initialize();
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
 			eventMap.mapListener(session, SessionEvent.MAP_UPDATE, _onMapUpdate);
+			eventMap.mapListener(session, SessionEvent.CELL_SELECTED, _onCellSelected);
 			
 			//ui
 			eventMap.mapListener(view.layersList, IndexChangeEvent.CHANGE, _invalidateLayerSelection);
 			eventMap.mapListener(view.clickArea, MouseEvent.MOUSE_DOWN, _onMapClick);
-			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
+		/*	eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanRequest);
 			eventMap.mapListener(view.doScanBtn, MouseEvent.MOUSE_DOWN, _onScanResultClick);
 			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeBtnClick);
 			eventMap.mapListener(view.deliverProbeBtn, MouseEvent.MOUSE_DOWN, _onDeliverProbeBtnClick);
-			eventMap.mapListener(view.assignProbeBtn, MouseEvent.MOUSE_DOWN, _onAssignProbeBtnClick);
+			eventMap.mapListener(view.assignProbeBtn, MouseEvent.MOUSE_DOWN, _onAssignProbeBtnClick);*/
 		}
 		
 		private function _onMapClick(e:MouseEvent):void
@@ -54,13 +53,9 @@ package mvc.mediators
 			var cw:Number = view.clickArea.width / session.mapInfo.width;
 			var rh:Number = view.clickArea.height / session.mapInfo.height;
 			
-			if (!_selection) _selection = new Point();
-			
-			_selection.x = Math.floor(e.localX/cw);
-			_selection.y = Math.floor(e.localY / rh);
-			
-			//validate cell info
-			view.cellInfo.showCellInfo(session.layers,session.cells[_selection.x + _selection.y * session.mapInfo.width],_selection.x,_selection.y);
+			var ge:GameEvent =  new GameEvent(GameEvent.SELECT_CELL);
+			ge.data = { x:Math.floor(e.localX/cw), y:Math.floor(e.localY / rh) };
+			dispatch(ge);
 		}
 		
 		private function _onSessionReady(e:SessionEvent):void
@@ -81,7 +76,7 @@ package mvc.mediators
 			view.setLayerId(session.layers[view.layersList.selectedIndex].id);
 		}
 		
-		private function _onScanRequest(e:MouseEvent):void
+	/*	private function _onScanRequest(e:MouseEvent):void
 		{
 			var layerId:int = parseInt(view.layersList.selectedItem['id']);
 			if (!(layerId && _selection)) return;
@@ -110,7 +105,7 @@ package mvc.mediators
 			_dispatchCommandEvent(GameEvent.DELIVER_PROBE,
 								{ x:_selection.x, y:_selection.y, rock_key:26})
 		}
-		
+		*/
 		private function _onAssignProbeBtnClick(e:MouseEvent):void
 		{
 			_dispatchCommandEvent(GameEvent.ASSIGN_PROBE,
@@ -126,7 +121,21 @@ package mvc.mediators
 		
 		private function _onMapUpdate(e:SessionEvent):void
 		{
+			_varlidateCellInfo();
 			(view.tileList.dataProvider as ArrayCollection).refresh();
+		}
+		
+		private function _onCellSelected(e:SessionEvent):void
+		{
+			_varlidateCellInfo()
+		}
+		
+		private function _varlidateCellInfo():void
+		{
+			view.cellInfo.showCellInfo(session.layers,session.currentCell);
+		}
+		private function _validateScanBtn():void
+		{
 		}
 	}
 }

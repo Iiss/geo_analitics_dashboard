@@ -22,6 +22,7 @@ package mvc.models
 		private var _mapInfo:MapInfo;
 		private var _cells:Array;
 		private var _scanReq:Array;
+		private var _curCell:CellModel;
 		
 		public function SessionModel() 
 		{
@@ -53,6 +54,15 @@ package mvc.models
 		public function get layers():Array { return _layers; }
 		public function get mapInfo():MapInfo { return _mapInfo; }
 		public function get room():Room { return _room; }
+		public function get currentCell():CellModel { return _curCell; }
+		public function set currentCell(value:CellModel):void
+		{
+			if (_curCell == value) return;
+			_curCell = value;
+			
+			dispatchEvent(new SessionEvent(SessionEvent.CELL_SELECTED));
+		}
+		
 		
 		public function updateRoomVars(varsArr:Array):void
 		{
@@ -71,8 +81,7 @@ package mvc.models
 						attachScanResults();
 						mapUpdated = true;
 						break;
-				}
-				
+				}	
 			}
 			
 			if (mapUpdated)
@@ -80,6 +89,7 @@ package mvc.models
 				dispatchEvent(new SessionEvent(SessionEvent.MAP_UPDATE));
 			}
 		}
+		
 		
 		private function fillBlankData():void
 		{
@@ -92,9 +102,12 @@ package mvc.models
 				for (var i:int = 0; i < cells_total; i++)
 				{
 					_cells[i] = new CellModel(_layers);
+					_cells[i].y = Math.floor(i / _mapInfo.width);
+					_cells[i].x = i%_mapInfo.width;
 				}
 			}	
 		}
+		
 		
 		public function attachScanRequests():void
 		{
@@ -112,6 +125,7 @@ package mvc.models
 			}
 		}
 		
+		
 		public function attachScanResults():void
 		{
 			var scanData:Array = dumpToArray(SCAN_DATA_VAR);
@@ -127,6 +141,8 @@ package mvc.models
 				}
 			}
 		}
+		
+		
 		private function dumpToArray(varName:String):Array
 		{
 			if (_room)
