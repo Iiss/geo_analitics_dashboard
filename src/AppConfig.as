@@ -12,13 +12,11 @@ package
 	import mvc.commands.StartupCommand;
 	import mvc.commands.UpdateRoomVarsCommand;
 	import mvc.events.GameEvent;
-	import mvc.mediators.AppMediator;
-	import mvc.mediators.CellInfoPanelMediator;
-	import mvc.mediators.ConsoleMediator;
-	import mvc.mediators.LayerSelectorMediator;
+	import mvc.mediators.*;
 	import mvc.mediators.MapViewMediator;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
+	import mvc.views.components.AnalyticControlPanel;
 	import mvc.views.components.CellInfoPanel;
 	import mvc.views.components.LayerSelector;
 	import mvc.views.ConsoleView;
@@ -75,6 +73,7 @@ package
 			mediatorMap.map(MapView).toMediator(MapViewMediator);
 			mediatorMap.map(LayerSelector).toMediator(LayerSelectorMediator);
 			mediatorMap.map(CellInfoPanel).toMediator(CellInfoPanelMediator);
+			mediatorMap.map(AnalyticControlPanel).toMediator(AnalyticControlPanelMediator);
 			//event
 			eventCommandMap.map(SessionEvent.NEXT_SESSION, SessionEvent).toCommand(SetupSessionCommand);
 			eventCommandMap.map(GameEvent.SCAN_REQUEST, GameEvent).toCommand(SendScanRequestCommand);

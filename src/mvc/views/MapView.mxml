@@ -62,7 +62,8 @@
 		public function setLayerId(id:int):void
 		{
 			TileRenderer.layerId = id;
-			(tileList.dataProvider as ArrayCollection).refresh();
+			var dp:ArrayCollection = (tileList.dataProvider as ArrayCollection)
+			if(dp) dp.refresh();
 		}
 		]]>
 	</fx:Script>
@@ -84,23 +85,8 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<s:BorderContainer y="330">
-		<s:layout>
-			<s:HorizontalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
-		</s:layout>
-		<comp:LayerSelector height="100%" />
-		<comp:CellInfoPanel height="100%"/>
-	</s:BorderContainer>
 	<!-- legend container -->
-	<!--<s:layout>
-			<s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
-		</s:layout>
-		<s:ButtonBar id="layersList" width="100%">
-			<s:layout>
-				<s:VerticalLayout horizontalAlign="justify" gap="0"/>
-			</s:layout>
-		</s:ButtonBar>
-		<comp:CellInfo id="cellInfo" height="100%" width="100%"/>
+	<!--
 		<s:Button id="scanBtn" label="Scan Request" width="100%"/>
 		<s:Button id="probeBtn" label="Probe Request" width="100%"/>
 		<s:Button id="doScanBtn" label="Scan" width="100%"/>

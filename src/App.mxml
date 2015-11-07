@@ -3,6 +3,7 @@
                xmlns:s="library://ns.adobe.com/flex/spark"
                xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:views="mvc.views.*"
+			   xmlns:comp="mvc.views.components.*"
 			   addedToStage="init()">
 			   
 	<fx:Script>
@@ -38,6 +39,11 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<views:MapView width="100%" height="100%" 
+		visible="false" visible.in_game="true"/>
+	<views:ScanView width="100%" height="100%" 
+		visible="false" visible.in_game="true"/>
+	<comp:AnalyticControlPanel
+		height="105" y="355"
 		visible="false" visible.in_game="true"/>
 	<views:PreloaderView width="100%" height="100%"
 		visible="false" visible.loading="true" />
