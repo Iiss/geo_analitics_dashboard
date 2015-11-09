@@ -11,8 +11,11 @@ package mvc.views.gameobjects
 	 */
 	public class Tooltip extends Sprite
 	{
-		public function Tooltip(text:String) 
+		public function Tooltip(text:String,x:Number=0,y:Number=0) 
 		{
+			this.x = x;
+			this.y = y;
+			
 			var tf:TextField = new TextField();
 			tf.defaultTextFormat = new TextFormat(new BenderFont().fontName, 7, 0x604932);
 			tf.autoSize = TextFieldAutoSize.LEFT;

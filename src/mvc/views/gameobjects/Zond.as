@@ -1,13 +1,14 @@
 package mvc.views.gameobjects 
 {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
-	import mx.core.UIComponent;
-	import flash.display.MovieClip
-	import flash.events.TimerEvent;
+	import mvc.views.gameobjects.ProbeProgressSkin;
 	import mvc.views.gameobjects.Tooltip;
+	import mx.core.UIComponent;
 	/**
 	 * ...
 	 * @author liss
@@ -24,6 +25,8 @@ package mvc.views.gameobjects
 		private var _zond:ZondAnimation;
 		private var _timer:Timer;
 		private var _probeTooltip:Tooltip;
+		private var _probeProgress:ProbeProgressSkin;
+		
 		public static const DIG_DURATION:int = 2500;
 		
 		public function Zond() 
@@ -34,24 +37,22 @@ package mvc.views.gameobjects
 			
 			_probeBtn = new _probeBtnSrc as Sprite;
 			_probeBtn.scaleX = _probeBtn.scaleY = 2;
-			_probeBtn.visible = false;
-			
+			_probeBtn.visible = false;	
 			addChild(_probeBtn);
-			
-			var tooltip:Tooltip = new Tooltip("зонд");
-			tooltip.x = -10;
-			tooltip.y = 9;
-			addChild(tooltip);
-			
-			_probeTooltip = new Tooltip("взять пробу");
-			_probeTooltip.x = -5;
-			_probeTooltip.y = -35;
+		
+			addChild(new Tooltip("зонд",-10,9));
+	
+			_probeTooltip = new Tooltip("взять пробу",-5,-35);
 			_probeTooltip.visible = false;
 			addChild(_probeTooltip);
-			
+		
 			_zond = new ZondAnimation();
 			_zond.state = ZondAnimation.DEFAULT_STATE;
 			addChild(_zond);
+			
+			_probeProgress = new ProbeProgressSkin()
+			_probeProgress.visible = false;
+			addChild(_probeProgress);
 			
 			addEventListener(MouseEvent.MOUSE_DOWN, _onClick);
 		}
@@ -82,14 +83,23 @@ package mvc.views.gameobjects
 			_probeBtn.removeEventListener(MouseEvent.MOUSE_DOWN, _onDig);
 			_zond.state = ZondAnimation.DIG_STATE;
 			_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onDigComplete);
+			addEventListener(Event.ENTER_FRAME, _onEnterFrame);
+			_probeProgress.visible = true;
 			_timer.start();
 		}
 		
 		private function _onDigComplete(e:TimerEvent):void
 		{
+			_probeProgress.visible = false;
 			_timer.stop();
 			_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onDigComplete);
+			removeEventListener(Event.ENTER_FRAME, _onEnterFrame);
 			_zond.state = ZondAnimation.FULL_STATE;
+		}
+		
+		private function _onEnterFrame(e:Event):void
+		{
+			_probeProgress.rotation += 7;
 		}
 	}
 }
