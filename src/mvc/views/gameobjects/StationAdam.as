@@ -13,7 +13,7 @@ package mvc.views.gameobjects
 			var pic:Sprite = new _picSrc() as Sprite;
 			super(pic, 'станция "Адам"');
 			
-			mouseEnabled = false;
+		//	mouseEnabled = false;
 			mouseChildren = false;
 		}
 	}
