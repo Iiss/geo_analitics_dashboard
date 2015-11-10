@@ -28,19 +28,25 @@
 			g.clear();
 			g.lineStyle(0.25, 0xffffff,.3);
 			
+			var l:CellLabel;
+			var l2:CellLabel;
+			
 			for (var x:int = 1; x <= col; x++)
 			{
 				g.moveTo(x*col_w, 0);
 				g.lineTo(x * col_w, height);
 				
-				var l:CellLabel = new CellLabel()
+				l = new CellLabel()
+				l2 = new CellLabel;
 				
-				l.width = col_w;
-				l.text = (x - 1).toString()
-				l.x = (x-1) * col_w;
+				l2.width = l.width = col_w;
+				l2.text = l.text = (x - 1).toString()
+				l2.x = l.x = (x-1) * col_w;
 				l.y = 2;
+				l2.y = height - 8;
 				
 				mapOverlay.addElement(l);
+				mapOverlay.addElement(l2);
 			}
 			
 			for (var y:int = 1; y <= rows; y++)
@@ -49,13 +55,18 @@
 				g.lineTo(width, y * row_h);
 				
 				l = new CellLabel();
+				l2 = new CellLabel();
+				l2.setStyle("textAlign", "right");
 				
-				l.text = (y - 1).toString()
-				l.height = 6;
+				l2.text = l.text = (y - 1).toString()
+				l2.height = l.height = 6;
+				l2.width = col_w;
+				l2.y = l.y = (y - .5) * row_h - .5 * l.height;
 				l.x = 2;
-				l.y = (y - .5) * row_h - .5 * l.height;
+				l2.x = width - 2 - l2.width;
 				
 				mapOverlay.addElement(l);
+				mapOverlay.addElement(l2);
 			}
 		}
 		
