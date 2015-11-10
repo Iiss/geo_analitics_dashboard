@@ -9,9 +9,16 @@ s|Application{
 	
 }
 
+@font-face {
+	src: url("../assets/bender.ttf");
+	fontFamily: "BenderFont";
+	embedAsCFF: true;
+}
+
 .cellLabel
 {
 	color: #ffffff;
 	fontSize: 6;
+	fontFamily:BenderFont;
 	textAlign: center;
 }
