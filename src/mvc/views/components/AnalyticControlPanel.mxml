@@ -8,9 +8,12 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:layout>
-		<s:HorizontalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
+		<s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
 	</s:layout>
-	<comp:LayerSelector height="100%"/>
-	<comp:CellInfoPanel height="100%" width="200"/>
-	<s:Button id="scanRequestBtn" height="100%" label="Scan Request"/>
+	<s:VGroup>
+		<comp:LayerSelector height="100%"/>
+		<comp:Legend width="200" id="legend"/>
+	</s:VGroup>
+	<comp:CellInfoPanel height="100%" width="145" />
+	<s:Button id="scanRequestBtn" label="Scan Request" width="145" />
 </s:BorderContainer>

@@ -30,15 +30,33 @@ package mvc.models
 			//graviscale
 			26:0x99E1A2,27:0x6DBE79,28:0x3EA04B,29:0x1C8E2E,30:0x046812
 		}
-		public static const LEGEND =
+		public static const LEGEND:Object =
 		{
 			//_legend
 			//radioscale
-			1: { 0:PALETTE[16], 10:PALETTE[17], 15:PALETTE[18], 40:PALETTE[19], 100:PALETTE[20] },
+			1: [ 
+			{value:0, color:PALETTE[16]},
+			{value:10, color:PALETTE[17]}, 
+			{value:15, color:PALETTE[18]}, 
+			{value:40, color:PALETTE[19]}, 
+			{value:100, color:PALETTE[20]} 
+			],
 			//magnitoscale
-			2: { 0:PALETTE[21], 25:PALETTE[22], 50:PALETTE[23], 75:PALETTE[24], 100:PALETTE[25] },
+			2: [ 
+			{value:0, color:PALETTE[21]}, 
+			{value:25, color:PALETTE[22]}, 
+			{value:50, color:PALETTE[23]}, 
+			{value:75, color:PALETTE[24]}, 
+			{value:100, color:PALETTE[25]}
+			],
 			//graviscale
-			3:{0:PALETTE[26], 25:PALETTE[27], 50:PALETTE[28], 75:PALETTE[29], 100:PALETTE[31]}
+			3:[
+			{value:0, color:PALETTE[26]}, 
+			{value:25, color:PALETTE[27]}, 
+			{value:50, color:PALETTE[28]}, 
+			{value:75, color:PALETTE[29]}, 
+			{value:100, color:PALETTE[31]}
+			]
 		}
 	}
 }

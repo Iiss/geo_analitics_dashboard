@@ -29,8 +29,14 @@ package mvc.mediators
 			super.initialize();
 			eventMap.mapListener(sessionModel, SessionEvent.CELL_SELECTED, _update);
 			eventMap.mapListener(sessionModel, SessionEvent.MAP_UPDATE, _update);
-			eventMap.mapListener(sessionModel, SessionEvent.LAYER_SELECTED, _update);
+			eventMap.mapListener(sessionModel, SessionEvent.LAYER_SELECTED, _onLayerSelect);
 			eventMap.mapListener(view.scanRequestBtn, MouseEvent.MOUSE_DOWN, _onScanRequestClick);
+		}
+		
+		private function _onLayerSelect(e:SessionEvent):void
+		{
+			view.legend.draw(sessionModel.currentLayer.legend);
+			_update(e);
 		}
 		
 		private function _update(e:SessionEvent):void

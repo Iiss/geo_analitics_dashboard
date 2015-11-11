@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo"
+			   verticalAlign="middle">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+		public function draw(legend:Array):void
+		{
+			layer.graphics.clear();
+			if (legend && legend.length > 0)
+			{
+				var unit:int = 180 / 100;
+				for (var i:int = legend.length - 1; i >= 0; i--)
+				{
+					layer.graphics.beginFill(legend[i].color);
+					layer.graphics.drawRect(0, 0, unit * legend[i].value, height);
+					layer.graphics.endFill();
+				}
+			}
+		}
+		]]>
+	</fx:Script>
+	<s:Label text="0"/>
+	<s:Group id="layer" height="20" width="100" />
+	<s:Label text="100"/>
+</s:HGroup>
