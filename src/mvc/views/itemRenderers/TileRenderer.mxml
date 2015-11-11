@@ -36,11 +36,11 @@
 				var ct:ColorTransform = new ColorTransform();
 				ct.color = ValueDictionary.PALETTE[value]
 				theBackgroundObject.setColorTransform(ct);
-				return value > 0;//!isNaN(value);
+				return value > 0;
 			}
 			return false;
 		}
-		
+		//0x59110B
 		]]>
 	</fx:Script>
 	<s:Rect id="theBackgroundObject" top="0" bottom="0" left="0" right="0"
@@ -50,5 +50,14 @@
                 alpha=".75"/>
         </s:fill>
     </s:Rect>
-	<s:Label id="scan_need" visible="{checkV(data)}" text="S" color="0xFFFFFF" />
+	<!---->
+	<s:Group id="scan_need" width="100%" height="100%" visible="{checkV(data)}">
+		<s:Rect top="2" bottom="2" left="2" right="2">
+			<s:fill>
+				<s:SolidColor color="0xD8896B" alpha=".75"/>
+			</s:fill>
+		</s:Rect>
+	<s:Label id="lbl" width="100%" y="{.5*(height-lbl.height)+2}" textAlign="center" text="?"
+		color="0xFFFFFF" styleName=".cellLabel" fontSize="12" />
+	</s:Group>
 </s:ItemRenderer>

@@ -30,7 +30,7 @@ package mvc.models
 			//graviscale
 			26:0x99E1A2,27:0x6DBE79,28:0x3EA04B,29:0x1C8E2E,30:0x046812
 		}
-	/*	public static function get LEGEND():Object
+		public static const LEGEND =
 		{
 			//_legend
 			//radioscale
@@ -39,6 +39,6 @@ package mvc.models
 			2: { 0:PALETTE[21], 25:PALETTE[22], 50:PALETTE[23], 75:PALETTE[24], 100:PALETTE[25] },
 			//graviscale
 			3:{0:PALETTE[26], 25:PALETTE[27], 50:PALETTE[28], 75:PALETTE[29], 100:PALETTE[31]}
-		}*/
+		}
 	}
 }

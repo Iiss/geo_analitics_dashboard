@@ -7,6 +7,7 @@ package mvc.models
 	import flash.events.TimerEvent;
 	import com.smartfoxserver.v2.entities.Room;
 	import com.smartfoxserver.v2.entities.data.SFSArray;
+	import mvc.models.ValueDictionary;
 	/**
 	 * ...
 	 * @author liss
@@ -105,6 +106,9 @@ package mvc.models
 			_layers = dumpToArray(LAYERS_DATA_VAR);
 			if (_layers && _layers.length>0)
 			{
+				for each (var l:* in _layers)
+					l.legend = ValueDictionary.LEGEND[l.id];
+				
 				_cells = new Array();
 				var cells_total:int = _mapInfo.width * _mapInfo.height;
 				

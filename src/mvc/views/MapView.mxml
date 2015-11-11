@@ -96,11 +96,4 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<!-- legend container -->
-	<!--
-		<s:Button id="scanBtn" label="Scan Request" width="100%"/>
-		<s:Button id="probeBtn" label="Probe Request" width="100%"/>
-		<s:Button id="doScanBtn" label="Scan" width="100%"/>
-		<s:Button id="deliverProbeBtn" label="Deliver Probe" width="100%"/>
-		<s:Button id="assignProbeBtn" label="Assign Probe" width="100%"/>-->
 </s:Group>

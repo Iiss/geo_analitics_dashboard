@@ -3,7 +3,7 @@
                xmlns:s="library://ns.adobe.com/flex/spark" 
                xmlns:mx="library://ns.adobe.com/flex/halo"
 			   xmlns:gameobj="mvc.views.gameobjects.*"
-			    addedToStage="test()">
+			    addedToStage="test()" click="onClick()">
 	<fx:Script>
 		<![CDATA[
 import flash.events.Event;
@@ -42,6 +42,11 @@ private var _speed:int = 0;
 			addEventListener(MouseEvent.MOUSE_UP, stop);
 		}
 		
+		private function onClick():void
+		{
+			selector.addPoint(new Point(mouseX, mouseY));
+		}
+		
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -52,4 +57,5 @@ private var _speed:int = 0;
 	<gameobj:Zond id="zond2" x="237.5" y="62.5"/>
 	<gameobj:StationAdam x="137.5" y="87.5"  mouseDown="moveZondDown()" />
 	<gameobj:StationEva x="437.5" y="237.5" mouseDown="moveZond()" />
+	<gameobj:CellSelector id="selector" width="100%" height="100%"/>
 </s:Group>
