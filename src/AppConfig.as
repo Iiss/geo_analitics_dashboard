@@ -30,6 +30,7 @@ package
 	import robotlegs.bender.framework.api.IInjector;
 	import ru.marstefo.liss.net.models.ConfigModel;
 	import ru.marstefo.liss.utils.LogService;
+	import mvc.commands.PingCommand;
 	
 	/**
 	 * ...
@@ -83,6 +84,7 @@ package
 			eventCommandMap.map(SFSEvent.ROOM_VARIABLES_UPDATE, SFSEvent).toCommand(UpdateRoomVarsCommand);
 			eventCommandMap.map(GameEvent.SELECT_CELL, GameEvent).toCommand(SelectCellCommand);
 			eventCommandMap.map(GameEvent.SELECT_LAYER, GameEvent).toCommand(SelectLayerCommand);
+			eventCommandMap.map(GameEvent.PING, GameEvent).toCommand(PingCommand);
 			//Commands
 			directCommandMap.map(StartupCommand).execute();
 		}

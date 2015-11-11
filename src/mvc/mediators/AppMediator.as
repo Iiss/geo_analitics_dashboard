@@ -5,6 +5,9 @@ package mvc.mediators
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	import com.smartfoxserver.v2.SmartFox;
 	import com.smartfoxserver.v2.core.SFSEvent;
+	import mvc.events.GameEvent;
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
 	/**
 	 * ...
 	 * @author liss
@@ -42,6 +45,14 @@ package mvc.mediators
 		private function _onConnection(e:SFSEvent):void
 		{
 			dispatch(new SessionEvent(SessionEvent.NEXT_SESSION));
+			var t:Timer = new Timer(10000, 0);
+			t.addEventListener(TimerEvent.TIMER, onTimer);
+			t.start();
+		}
+		
+		private function onTimer(e:TimerEvent):void
+		{
+			dispatch(new GameEvent(GameEvent.PING));
 		}
 		
 		private function _onSessionLoad(e:SessionEvent):void

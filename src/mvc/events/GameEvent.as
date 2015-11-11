@@ -14,6 +14,7 @@ package mvc.events
 		public static const SELECT_LAYER:String = "SELECT_LAYER";
 		public static const DELIVER_PROBE:String = "DELIVER_PROBE";
 		public static const ASSIGN_PROBE:String = "ASSIGN_PROBE";
+		public static const PING:String = "PING";
 		public var data:*
 		
 		public function GameEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 
