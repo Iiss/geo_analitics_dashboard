@@ -3,18 +3,14 @@
                xmlns:s="library://ns.adobe.com/flex/spark" 
                xmlns:mx="library://ns.adobe.com/flex/halo"
 			   xmlns:gameobj="mvc.views.gameobjects.*"
-			    addedToStage="test()" click="onClick()">
+			    mouseChildren="false" mouseEnabled="false">
 	<fx:Script>
-		<![CDATA[
+		<![CDATA[/*
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 private var _speed:int = 0;
-		private function test():void
-		{
-			
-			//joint.addTarget(zond2, new Point(287.5, 112.5));
-		}
+		
 		private function EF(e:flash.events.Event):void
 		{
 			zond.y+=_speed;
@@ -45,17 +41,17 @@ private var _speed:int = 0;
 		private function onClick():void
 		{
 			selector.addPoint(new Point(mouseX, mouseY));
-		}
+		}*/
 		
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<gameobj:DriverJoint id="joint"/>
+	<!--<gameobj:DriverJoint id="joint"/>
 	<gameobj:Zond id="zond" x="437.5" y="162.5"/>
-	<gameobj:Zond id="zond2" x="237.5" y="62.5"/>
-	<gameobj:StationAdam x="137.5" y="87.5"  mouseDown="moveZondDown()" />
-	<gameobj:StationEva x="437.5" y="237.5" mouseDown="moveZond()" />
+	<gameobj:Zond id="zond2" x="237.5" y="62.5"/>mouseDown="moveZondDown()" mouseDown="moveZond()" -->
+	<gameobj:StationAdam x="137.5" y="87.5"  />
+	<gameobj:StationEva x="437.5" y="237.5" />
 	<gameobj:CellSelector id="selector" width="100%" height="100%"/>
 </s:Group>

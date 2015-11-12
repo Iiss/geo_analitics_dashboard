@@ -31,6 +31,8 @@ package mvc.mediators
 			eventMap.mapListener(sessionModel, SessionEvent.MAP_UPDATE, _update);
 			eventMap.mapListener(sessionModel, SessionEvent.LAYER_SELECTED, _onLayerSelect);
 			eventMap.mapListener(view.scanRequestBtn, MouseEvent.MOUSE_DOWN, _onScanRequestClick);
+			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanClick);
+			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeClick);
 		}
 		
 		private function _onLayerSelect(e:SessionEvent):void
@@ -59,6 +61,26 @@ package mvc.mediators
 									layer_id: sessionModel.currentLayer.id
 									})
 		}
+		
+		
+		private function _onScanClick(e:MouseEvent):void
+		{
+			_dispatchCommandEvent(GameEvent.SCAN_RESULT, { 
+									x: sessionModel.currentCell.x,
+									y: sessionModel.currentCell.y,
+									layer_id: sessionModel.currentLayer.id
+									})
+		}
+		
+		private function _onProbeClick(e:MouseEvent):void
+		{
+			_dispatchCommandEvent(GameEvent.DELIVER_PROBE, { 
+									x: sessionModel.currentCell.x,
+									y: sessionModel.currentCell.y,
+									layer_id: 4
+									})
+		}
+		
 		
 		private function _dispatchCommandEvent(eventType:String,data:Object=null):void
 		{

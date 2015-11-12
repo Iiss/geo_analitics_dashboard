@@ -4,6 +4,7 @@
                xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:views="mvc.views.*"
 			   xmlns:comp="mvc.views.components.*"
+			    xmlns:gameobj="mvc.views.gameobjects.*"
 			   addedToStage="init()">
 			   
 	<fx:Script>
@@ -40,8 +41,14 @@
 	</fx:Declarations>
 	<views:MapView width="100%" height="100%" 
 		visible="false" visible.in_game="true"/>
-	<!--<views:ScanView width="100%" height="100%" 
-		visible="false" visible.in_game="true"/>-->
+	<s:Group visible="false" visible.in_game="true">
+		
+		<gameobj:StationAdam x="137.5" y="87.5"  />
+		<gameobj:StationEva x="437.5" y="237.5" />
+		<gameobj:CellSelector id="selector" width="100%" height="100%"/>
+	</s:Group>
+	
+	
 	<comp:AnalyticControlPanel
 		height="100%" width="155" x="645"
 		visible="false" visible.in_game="true"/>

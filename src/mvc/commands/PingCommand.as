@@ -4,7 +4,7 @@ package mvc.commands
 	{
 		public function PingCommand() 
 		{
-			super("ping");
+			super("game.ping");
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package mvc.mediators 
 {
+	import flash.geom.Point;
 	import mvc.models.SessionEvent;
 	import mvc.models.SessionModel;
 	import robotlegs.bender.bundles.mvcs.Mediator;
@@ -35,6 +36,8 @@ package mvc.mediators
 			eventMap.mapListener(session, SessionEvent.LOAD, _onSessionLoad);
 			eventMap.mapListener(session, SessionEvent.READY, _onSessionReady);
 			eventMap.mapListener(sfs, SFSEvent.ROOM_VARIABLES_UPDATE, _dispatchForward);
+			////
+			eventMap.mapListener(session, SessionEvent.CELL_SELECTED, _onCellSelected);
 		}
 		
 		private function _dispatchForward(e:SFSEvent):void
@@ -65,6 +68,12 @@ package mvc.mediators
 			view.currentState = "in_game";
 		}
 		
+		private function _onCellSelected(e:SessionEvent):void
+		{
+			var ptx:Number = view.width / session.mapInfo.width*(session.currentCell.x+.5);
+			var pty:Number = view.height / session.mapInfo.height*(session.currentCell.y+.5);
+			view.selector.addPoint(new Point(ptx,pty));
+		}
 	}
 
 }

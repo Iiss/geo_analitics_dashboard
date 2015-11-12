@@ -15,5 +15,7 @@
 		<comp:Legend width="200" id="legend"/>
 	</s:VGroup>
 	<comp:CellInfoPanel height="100%" width="145" />
-	<s:Button id="scanRequestBtn" label="Scan Request" width="145" />
+	<s:Button id="scanRequestBtn" label="Scan Request" width="145" visible="false" />
+	<s:Button id="scanBtn" label="Сканировать" width="145" />
+	<s:Button id="probeBtn" label="Доставить пробу" width="145" />
 </s:BorderContainer>

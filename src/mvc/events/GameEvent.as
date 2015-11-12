@@ -24,7 +24,9 @@ package mvc.events
 		
 		public override function clone():Event 
 		{ 
-			return new GameEvent(type, bubbles, cancelable);
+			var e:GameEvent = new GameEvent(type, bubbles, cancelable);
+			e.data = data;
+			return e;
 		} 
 		
 		public override function toString():String 
