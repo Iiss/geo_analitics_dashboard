@@ -9,7 +9,7 @@ package ru.marstefo.liss.utils
 	 */
 	public class ObjectPool 
 	{
-		private var _pool:Dictionary = new Dictionary();
+		private static var _pool:Dictionary = new Dictionary();
 		
 		public static function create(c:Class):Object
 		{
@@ -21,11 +21,14 @@ package ru.marstefo.liss.utils
 		
 		public static function recycle(obj:Object):void
 		{
+			
 			var c:Class = Class(getDefinitionByName(getQualifiedClassName(obj)));
 			if (!_pool[c])
 				_pool[c] = new Array();
 			
-			_pool[c].push = obj;		
+			_pool[c].push(obj);
+			
+			trace('resycle ' + obj +' > '+_pool[c].length);
 		}
 	}
 }
