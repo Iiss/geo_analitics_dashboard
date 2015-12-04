@@ -6,5 +6,11 @@ package mvc.commands
 		{
 			super("game.scan");
 		}
+		
+		override public function execute():void 
+		{
+			var a:*=1
+			super.execute();
+		}
 	}
 }

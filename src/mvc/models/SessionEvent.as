@@ -14,6 +14,9 @@ package mvc.models
 		public static const MAP_UPDATE:String = "MAP_UPDATE";
 		public static const CELL_SELECTED:String = "CELL_SELECTED";
 		public static const LAYER_SELECTED:String = "LAYER_SELECTED";
+		public static const LAYERS_CHANGED:String = "LAYERS_CHANGED";
+		public static const LOCKED:String = "LOCKED";
+		public static const UNLOCKED:String = "UNLOCKED";
 		
 		
 		public function SessionEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 

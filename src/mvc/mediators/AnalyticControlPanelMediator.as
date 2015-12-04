@@ -33,6 +33,8 @@ package mvc.mediators
 			eventMap.mapListener(view.scanRequestBtn, MouseEvent.MOUSE_DOWN, _onScanRequestClick);
 			eventMap.mapListener(view.scanBtn, MouseEvent.MOUSE_DOWN, _onScanClick);
 			eventMap.mapListener(view.probeBtn, MouseEvent.MOUSE_DOWN, _onProbeClick);
+			eventMap.mapListener(view.placePlantBtn, MouseEvent.MOUSE_DOWN, _onPlacePlantClick);
+			eventMap.mapListener(view.removePlantBtn, MouseEvent.MOUSE_DOWN, _onRemovePlantClick);
 		}
 		
 		private function _onLayerSelect(e:SessionEvent):void
@@ -78,6 +80,21 @@ package mvc.mediators
 									x: sessionModel.currentCell.x,
 									y: sessionModel.currentCell.y,
 									layer_id: 4
+									})
+		}
+		
+		private function _onPlacePlantClick(e:MouseEvent):void
+		{
+			_dispatchCommandEvent(GameEvent.PLACE_PLANT, { 
+									x: sessionModel.currentCell.x,
+									y: sessionModel.currentCell.y
+									})
+		}
+		
+		private function _onRemovePlantClick(e:MouseEvent):void
+		{
+			_dispatchCommandEvent(GameEvent.REMOVE_PLANT, { 
+									plant_id: 2
 									})
 		}
 		

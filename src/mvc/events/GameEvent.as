@@ -14,6 +14,8 @@ package mvc.events
 		public static const SELECT_LAYER:String = "SELECT_LAYER";
 		public static const DELIVER_PROBE:String = "DELIVER_PROBE";
 		public static const ASSIGN_PROBE:String = "ASSIGN_PROBE";
+		public static const PLACE_PLANT:String = "PLACE_PLANT";
+		public static const REMOVE_PLANT:String = "REMOVE_PLANT";
 		public static const PING:String = "PING";
 		public var data:*
 		
